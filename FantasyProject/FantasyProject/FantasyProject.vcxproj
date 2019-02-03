@@ -115,6 +115,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Barbarian.cpp" />
+    <ClCompile Include="src\BlueMen.cpp" />
+    <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\HarryPotter.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Medusa.cpp" />
+    <ClCompile Include="src\Vampire.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Barbarian.hpp" />
+    <ClInclude Include="src\BlueMen.hpp" />
+    <ClInclude Include="src\Character.hpp" />
+    <ClInclude Include="src\HarryPotter.hpp" />
+    <ClInclude Include="src\Medusa.hpp" />
+    <ClInclude Include="src\Vampire.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
