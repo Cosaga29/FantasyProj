@@ -2,6 +2,14 @@
 #define CHARACTER_HPP
 
 #include <string>
+#include "NumGenerator.hpp"
+#include <iostream>
+
+
+//type codes used for printing round information only
+enum character_type {BARB, BLUE, HARRY, MEDUSA, VAMPIRE };
+
+static const std::string charactrer_names[5] = { "Barbarian ", "BlueMen ", "Harry Potter ", "Medusa ", "Vampire " };
 
 /*
 Abstract class for character
@@ -12,10 +20,10 @@ class Character {
 
 protected:
 
-	int attack;
-	int defense;
+	int attack_power;
 	int armor;
 	int strength;
+	int speed;
 
 	std::string characteristic;
 
@@ -26,12 +34,15 @@ public:
 
 	virtual int attack() = 0; //return damage from attack
 
-	virtual void defense(int) = 0; //accept an attack, calculate damage infliced
+	virtual void defend(int) = 0; //accept an attack, calculate damage infliced
 
 	virtual ~Character();
 
 	int getStrength() const; //return strength
 
+	std::string getCharacteristic() const;
+
+	int getSpeed() const; //return speed
 };
 
 

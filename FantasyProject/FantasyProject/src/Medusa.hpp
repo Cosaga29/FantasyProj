@@ -13,9 +13,13 @@ private:
 
 public:
 
-	Medusa(int, int, int, int, std::string);
+	Medusa();
 
+	int attack() override;
 
+	void defend(int) override;
+
+	~Medusa();
 };
 
 

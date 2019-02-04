@@ -13,9 +13,13 @@ private:
 
 public:
 
-	Barbarian(int, int, int, int, std::string);
+	Barbarian();
 
+	int attack() override;
 
+	void defend(int) override;
+
+	~Barbarian();
 };
 
 

@@ -12,9 +12,15 @@ private:
 
 public:
 
-	BlueMen(int, int, int, int, std::string);
+	BlueMen();
 
+	int attack() override;
 
+	void defend(int) override;
+
+	int calcMobDefenseRolls() const;
+
+	~BlueMen();
 };
 
 

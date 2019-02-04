@@ -13,18 +13,20 @@ class HarryPotter : public Character {
 
 
 private:
+
 	int m_deathCount;	//keeps track of how many times Harry has died.
-
-
-public:
-
-	HarryPotter(int, int, int, int, std::string);
 
 	bool isLastDeath();
 
-	int applyDeath();
+public:
 
+	HarryPotter();
 
+	int attack() override;
+
+	void defend(int) override;
+
+	~HarryPotter();
 };
 
 

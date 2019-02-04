@@ -12,8 +12,13 @@ private:
 
 public:
 
-	Vampire(int, int, int, int, std::string);
+	Vampire();
 
+	int attack() override;
+
+	void defend(int) override;
+
+	~Vampire();
 };
 
 
