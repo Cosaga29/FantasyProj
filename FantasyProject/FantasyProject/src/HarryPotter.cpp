@@ -1,8 +1,9 @@
 #include "HarryPotter.hpp"
 
-bool HarryPotter::isLastDeath()
+void HarryPotter::hogwarts()
 {
-	return m_deathCount > 0;
+	std::cout << "Harry Potter's health reaches 0, he uses \"Dumbledore's Favorite\" and heals back to 20 HP!" << std::endl;
+	strength = 20;
 }
 
 HarryPotter::HarryPotter() :
@@ -32,10 +33,11 @@ void HarryPotter::defend(int damage)
 
 	}
 
+	//if harry dies, check if its his first death
 	if (strength <= 0) {
-		if (!isLastDeath()) {
-			std::cout << "Harry Potter's health reaches 0, he uses \"Dumbledore's Favorite\" and heals back to 20 HP!" << std::endl;
-			strength = 20;
+		if (m_deathCount == 0) {	//if its his first death, use hogwarts ability
+			hogwarts();				
+			m_deathCount++;		
 		}
 	}
 

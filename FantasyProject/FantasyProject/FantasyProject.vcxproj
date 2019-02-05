@@ -119,8 +119,10 @@
     <ClCompile Include="src\BlueMen.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\HarryPotter.cpp" />
+    <ClCompile Include="src\InputValidationFunctions.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Medusa.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\NumGenerator.cpp" />
     <ClCompile Include="src\Vampire.cpp" />
   </ItemGroup>
@@ -129,7 +131,9 @@
     <ClInclude Include="src\BlueMen.hpp" />
     <ClInclude Include="src\Character.hpp" />
     <ClInclude Include="src\HarryPotter.hpp" />
+    <ClInclude Include="src\InputValidationFunctions.hpp" />
     <ClInclude Include="src\Medusa.hpp" />
+    <ClInclude Include="src\Menu.hpp" />
     <ClInclude Include="src\NumGenerator.hpp" />
     <ClInclude Include="src\Vampire.hpp" />
   </ItemGroup>

@@ -16,7 +16,7 @@ private:
 
 	int m_deathCount;	//keeps track of how many times Harry has died.
 
-	bool isLastDeath();
+	void hogwarts();
 
 public:
 

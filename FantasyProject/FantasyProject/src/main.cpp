@@ -8,6 +8,7 @@
 #include "BlueMen.hpp"
 #include "HarryPotter.hpp"
 #include "Medusa.hpp"
+#include "Menu.hpp"
 #include "Vampire.hpp"
 
 
@@ -44,55 +45,122 @@ void printAttack(Character* attacker, Character* defender) {
 }
 
 
+Character* selectChar(character_type charCode) {
+	
+	Character* toReturn = 0;
+
+	switch (charCode) {
+	case BARB:
+		toReturn = new Barbarian();
+		break;
+
+	case BLUE:
+		toReturn = new BlueMen();
+		break;
+
+	case HARRY:
+		toReturn = new HarryPotter();
+		break;
+
+	case MEDUSA:
+		toReturn = new Medusa();
+		break;
+
+	case VAMPIRE:
+		toReturn = new Vampire();
+		break;
+
+	}
+
+	return toReturn;
+}
+
+
+
 int main() {
 
 	srand(time(NULL));
 
+	Menu playAgain;
+	playAgain.addPrompt("Play again");
+	playAgain.addPrompt("Exit");
+
+	Menu characterSelection;
+	characterSelection.addPrompt("Barbarian");
+	characterSelection.addPrompt("BlueMen");
+	characterSelection.addPrompt("Harry Potter");
+	characterSelection.addPrompt("Medusa");
+	characterSelection.addPrompt("Vampire");
+
+
 	std::vector<Character*> characters;
 
-	//pick two characters to fight
-	characters.push_back(new HarryPotter());
-	characters.push_back(new Medusa());
+	bool playerExit = false;
 
-	//sort pointers to characters based on speed. The character at characters[0] is the fastest.
-	std::sort(characters.begin(), characters.end(), &fasterCharacter);
+	while (!playerExit) {
+		characterSelection.displayMessage("Pick first character: ");
+		int firstChar = characterSelection.getUserChoice();
 
-
-	//In the case of a speed tie, the character that was added first goes first in combat.
-
+		characterSelection.displayMessage("Pick second character: ");
+		int secondChar = characterSelection.getUserChoice();
 
 
-	//combat loop
-	bool character_died = false;
-	
 
 
-	while(!character_died) {
-		
+		//pick two characters to fight
+		characters.push_back(selectChar(static_cast<character_type>(firstChar - 1)));
+		characters.push_back(selectChar(static_cast<character_type>(secondChar - 1)));
 
-		printAttack(characters[0], characters[1]);
 
-		if (characters[1]->getStrength() > 0) {
-			printAttack(characters[1], characters[0]);
+		//sort pointers to characters based on speed. The character at characters[0] is the fastest.
+		std::sort(characters.begin(), characters.end(), &fasterCharacter);
+
+
+		//In the case of a speed tie, the character that was added first goes first in combat.
+
+
+		//combat loop
+		bool character_died = false;
+
+		while (!character_died) {
+
+
+			printAttack(characters[0], characters[1]);
+
+			if (characters[1]->getStrength() > 0) {
+				printAttack(characters[1], characters[0]);
+			}
+			else {
+				character_died = true;
+			}
+
+			if (characters[0]->getStrength() <= 0) {
+				character_died = true;
+			}
+
 		}
-		else {
-			character_died = true;
-		}
 
-		if (characters[0]->getStrength() <= 0) {
-			character_died = true;
-		}
 
+		//clean resources for next playthrough
+		for (int i = 0; i < characters.size(); i++) {
+			delete characters[i];
+		}
+		characters.clear();
+
+
+
+
+		if (playAgain.getUserChoice() == playAgain.getExitCode()) {
+			playerExit = true;
+		}
 	}
 
 
 
 
 
-
-
-
 	//std::cout << "test";
+	std::cin.ignore(34747, '\n');
 	std::cin.get();
 
 	return 0;

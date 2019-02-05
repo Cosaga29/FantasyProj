@@ -9,7 +9,7 @@ Vampire::Vampire() :
 
 int Vampire::attack()
 {
-	return roll(2, attack_power);
+	return roll(1, attack_power);
 }
 
 void Vampire::getClass() const

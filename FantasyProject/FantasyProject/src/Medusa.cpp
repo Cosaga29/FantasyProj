@@ -10,7 +10,7 @@ int Medusa::attack()
 {
 	int attack_damage = roll(2, attack_power);
 	if (attack_damage == 12) {
-		std::cout << "Medusa rolled \"Snake Eyes\", its super effective!" << std::endl;
+		std::cout << "Medusa rolled \"Snake Eyes\", its super effective and turned her opponent to stone!" << std::endl;
 		return 5000;
 	}
 	return roll(2, attack_power);
