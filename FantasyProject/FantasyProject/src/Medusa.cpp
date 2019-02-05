@@ -16,15 +16,25 @@ int Medusa::attack()
 	return roll(2, attack_power);
 }
 
+void Medusa::getClass() const
+{
+	std::cout << "Medusa " << std::endl;
+}
+
 void Medusa::defend(int damage)
 {
-	int damage_taken = damage - (roll(1, 6) + armor);
+
+	int defense_roll = roll(1, 6);
+	std::cout << "Defense roll: " << defense_roll << std::endl;
+
+	int damage_taken = damage - (defense_roll + armor);
+	std::cout << "Damage taken: " << damage << " - " << "(" << defense_roll << " + " << armor << ") = " << damage_taken << std::endl;
 
 	if (damage_taken > 0) {
 
 		strength -= damage_taken;
-
 	}
+	std::cout << "Defenders strength: " << strength << std::endl;
 }
 
 Medusa::~Medusa()

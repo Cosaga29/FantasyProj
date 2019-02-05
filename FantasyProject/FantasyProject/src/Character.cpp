@@ -14,6 +14,11 @@ int Character::getStrength() const
 	return strength;
 }
 
+int Character::getArmor() const
+{
+	return armor;
+}
+
 int Character::getSpeed() const
 {
 	return speed;

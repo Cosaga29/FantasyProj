@@ -36,13 +36,19 @@ public:
 
 	virtual void defend(int) = 0; //accept an attack, calculate damage infliced
 
+	virtual void getClass() const = 0;
+
 	virtual ~Character();
 
 	int getStrength() const; //return strength
 
+	int getArmor() const; //return armor
+
 	std::string getCharacteristic() const;
 
 	int getSpeed() const; //return speed
+
+
 };
 
 

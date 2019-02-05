@@ -17,6 +17,32 @@ bool fasterCharacter(Character* first, Character* second) {
 }
 
 
+void printAttack(Character* attacker, Character* defender) {
+	//display attacker
+	std::cout << "Attacker: ";
+	attacker->getClass();
+
+	//display defender
+	std::cout << "Defender: ";
+	defender->getClass();
+
+	//display defender stats
+	std::cout << "\tArmor:   " << defender->getArmor()
+		<< "\tStrength:" << defender->getStrength() << std::endl;
+
+
+	std::cout << "\n\nCombat:\n" << std::endl;
+
+	//first character attakcs
+	int attack_roll = attacker->attack();
+	std::cout << "Attack roll: " << attack_roll << std::endl;
+
+
+	//second character defends against attack
+	defender->defend(attack_roll);
+	std::cout << "\n\n" << std::endl;
+}
+
 
 int main() {
 
@@ -41,13 +67,21 @@ int main() {
 	
 
 
-	while (!character_died) {
+	while(!character_died) {
+		
 
+		printAttack(characters[0], characters[1]);
 
+		if (characters[1]->getStrength() > 0) {
+			printAttack(characters[1], characters[0]);
+		}
+		else {
+			character_died = true;
+		}
 
-
-
-
+		if (characters[0]->getStrength() <= 0) {
+			character_died = true;
+		}
 
 	}
 

@@ -16,6 +16,8 @@ public:
 
 	int attack() override;
 
+	void getClass() const override;
+
 	void defend(int) override;
 
 	~Vampire();

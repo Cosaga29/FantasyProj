@@ -18,6 +18,8 @@ public:
 
 	void defend(int) override;
 
+	void getClass() const override;
+
 	int calcMobDefenseRolls() const;
 
 	~BlueMen();

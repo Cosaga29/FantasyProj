@@ -19,6 +19,8 @@ public:
 
 	void defend(int) override;
 
+	void getClass() const override;
+
 	~Barbarian();
 };
 
