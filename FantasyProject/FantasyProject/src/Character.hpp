@@ -1,6 +1,18 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
+/*****************************************
+* Author: Martin Edmunds
+* Email: edmundsm@oregonstate.edu
+* Date: 02/07/19
+* Project: Project 3
+* Description: Character class
+*
+* Defines simple get methods to return data from the character class
+*
+*
+******************************************/
+
 #include <string>
 #include "NumGenerator.hpp"
 #include <iostream>

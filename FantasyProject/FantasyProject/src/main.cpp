@@ -1,3 +1,17 @@
+/*****************************************
+* Author: Martin Edmunds
+* Email: edmundsm@oregonstate.edu
+* Date: 02/07/19
+* Project: Project 3
+* Description: Main function
+*
+* Creates a vector to manage the order of attacks in a given round.
+* Position 0 is the character to attack first, 1 to attack second
+*
+* The vector consists of character pointers sorted via speed
+*
+******************************************/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -14,10 +28,20 @@
 
 //sort vector of character points by speed
 bool fasterCharacter(Character* first, Character* second) {
-	return first->getSpeed() > second->getSpeed();
+
+	return first->getSpeed() > second->getSpeed();	//if first > second, return true (swap)
+
 }
 
+/*
+Function that handles a single attack made in the game.
 
+Param- 
+	attacker- attacking character
+	defender- defending character
+
+
+*/
 void printAttack(Character* attacker, Character* defender) {
 	//display attacker
 	std::cout << "Attacker: ";
@@ -32,6 +56,7 @@ void printAttack(Character* attacker, Character* defender) {
 		<< "\tStrength:" << defender->getStrength() << std::endl;
 
 
+	//Start combat
 	std::cout << "\n\nCombat:\n" << std::endl;
 
 	//first character attakcs
@@ -45,33 +70,41 @@ void printAttack(Character* attacker, Character* defender) {
 }
 
 
+
+/*
+Function that allows for a user to select a character to add given a certain character code
+Character_type is defined in Character class.
+
+
+*/
 Character* selectChar(character_type charCode) {
 	
 	Character* toReturn = 0;
 
 	switch (charCode) {
-	case BARB:
+	case BARB:		//create a barbarian
 		toReturn = new Barbarian();
 		break;
 
-	case BLUE:
+	case BLUE:		//create a bluemen
 		toReturn = new BlueMen();
 		break;
 
-	case HARRY:
+	case HARRY:		//create harry potter
 		toReturn = new HarryPotter();
 		break;
 
-	case MEDUSA:
+	case MEDUSA:	//create medusa
 		toReturn = new Medusa();
 		break;
 
-	case VAMPIRE:
+	case VAMPIRE:	//create vampire
 		toReturn = new Vampire();
 		break;
 
 	}
 
+	//return selected character
 	return toReturn;
 }
 
@@ -79,12 +112,15 @@ Character* selectChar(character_type charCode) {
 
 int main() {
 
-	srand(time(NULL));
+	srand(time(NULL));	//seed random number generator
 
+	//Build play again menu
 	Menu playAgain;
 	playAgain.addPrompt("Play again");
 	playAgain.addPrompt("Exit");
 
+
+	//Build character selection menu
 	Menu characterSelection;
 	characterSelection.addPrompt("Barbarian");
 	characterSelection.addPrompt("BlueMen");
@@ -92,12 +128,19 @@ int main() {
 	characterSelection.addPrompt("Medusa");
 	characterSelection.addPrompt("Vampire");
 
-
+	//declar vector to store pointers to characters
 	std::vector<Character*> characters;
 
+
+	//exit flag
 	bool playerExit = false;
 
-	while (!playerExit) {
+
+	
+	while (!playerExit) {	//while the user hasn't elected to exit
+
+
+		//get character classes from user
 		characterSelection.displayMessage("Pick first character: ");
 		int firstChar = characterSelection.getUserChoice();
 
@@ -105,23 +148,20 @@ int main() {
 		int secondChar = characterSelection.getUserChoice();
 
 
-
-
-		//pick two characters to fight
-		characters.push_back(selectChar(static_cast<character_type>(firstChar - 1)));
+		//pick two characters to fight via select char method and the input given by the user
+		characters.push_back(selectChar(static_cast<character_type>(firstChar - 1)));	//example: user enters 1 = character_type = 0 (Barbarian)
 		characters.push_back(selectChar(static_cast<character_type>(secondChar - 1)));
 
 
 		//sort pointers to characters based on speed. The character at characters[0] is the fastest.
 		std::sort(characters.begin(), characters.end(), &fasterCharacter);
-
-
 		//In the case of a speed tie, the character that was added first goes first in combat.
 
 
 		//combat loop
 		bool character_died = false;
 
+		//while a character hasnt died
 		while (!character_died) {
 
 
@@ -141,27 +181,21 @@ int main() {
 		}
 
 
-		//clean resources for next playthrough
+		//clean resources for next play if desired
 		for (int i = 0; i < characters.size(); i++) {
 			delete characters[i];
 		}
-		characters.clear();
+		characters.clear();	//clear vector of pointer data
 
 
 
-
+		//check if player would like to exit
 		if (playAgain.getUserChoice() == playAgain.getExitCode()) {
 			playerExit = true;
 		}
 	}
 
 
-
-
-
-	//std::cout << "test";
-	std::cin.ignore(34747, '\n');
-	std::cin.get();
 
 	return 0;
 }
